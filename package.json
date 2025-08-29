@@ -1,0 +1,19 @@
+{
+  "name": "quickai-backend",
+  "version": "1.0.0",
+  "description": "QuickAI Backend API",
+  "main": "client/server/server.js",
+  "scripts": {
+    "build": "echo 'Backend only - no build step needed'",
+    "start": "node client/server/server.js",
+    "dev": "cd client/server && npm run server"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": ["ai", "backend", "api", "vercel"],
+  "author": "QuickAI Team",
+  "license": "MIT"
+}
