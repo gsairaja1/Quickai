@@ -1,21 +1,18 @@
 import multer from "multer";
 import path from "path";
-import fs from "fs";
+import { getTempDir, createUniqueFilename } from "./fileHandler.js";
 
-// Create temp directory if it doesn't exist
-const tempDir = path.join(process.cwd(), 'temp');
-if (!fs.existsSync(tempDir)) {
-    fs.mkdirSync(tempDir, { recursive: true });
-}
+// Get the appropriate temp directory for the current environment
+const tempDir = getTempDir();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, tempDir);
     },
     filename: function (req, file, cb) {
-        // Generate unique filename
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+        // Generate unique filename using our utility
+        const uniqueFilename = createUniqueFilename(file.originalname, file.fieldname);
+        cb(null, uniqueFilename);
     }
 });
 

@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "client/server/server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "client/server/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "client/server/server.js"
+        }
+    ],
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "functions": {
+        "client/server/server.js": {
+            "maxDuration": 30
+        }
+    }
+}
