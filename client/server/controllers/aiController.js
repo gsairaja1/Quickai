@@ -6,7 +6,6 @@ import getSql from "../configs/db.js";
 import { clerkClient } from "@clerk/express";
 import fs from "fs";
 import pdf from 'pdf-parse/lib/pdf-parse.js'
-import { readFileSafely } from "../configs/fileHandler.js";
 
 
 // Only use Clerk when keys are configured
@@ -518,10 +517,18 @@ export const resumeReview = async (req, res) => {
     // Read and parse PDF with error handling
     let pdfText = "";
     try {
-      const dataBuffer = readFileSafely(resume.path);
+      const dataBuffer = fs.readFileSync(resume.path);
       const pdfData = await pdf(dataBuffer);
       pdfText = pdfData.text || "";
       console.log("  - PDF parsed successfully, text length:", pdfText.length);
+      
+      // Clean up temporary file (important for Vercel)
+      try {
+        fs.unlinkSync(resume.path);
+        console.log("  - Temporary file cleaned up");
+      } catch (cleanupError) {
+        console.log("  - File cleanup failed (non-critical):", cleanupError.message);
+      }
     } catch (pdfError) {
       console.error("PDF parsing failed:", pdfError);
       return res.status(400).json({

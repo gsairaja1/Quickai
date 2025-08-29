@@ -103,28 +103,9 @@
    npm install
    ```
 
-3. **Environment Setup**
-   
-   Create `.env` files in both `client/` and `client/server/` directories:
-   
-   ```env
-   # Frontend (.env in client/)
-   VITE_BASE_URL=http://localhost:3000
-   
-   # Backend (.env in client/server/)
-   PORT=3000
-   DATABASE_URL=your_neon_database_url
-   CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-   CLERK_SECRET_KEY=your_clerk_secret_key
-   GEMINI_API_KEY=your_gemini_api_key
-   CLIPDROP_API_KEY=your_clipdrop_api_key
-   APILAYER_KEY=your_apilayer_key
-   CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-   CLOUDINARY_API_KEY=your_cloudinary_api_key
-   CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-   ```
 
-4. **Start the development servers**
+
+3. **Start the development servers**
    ```bash
    # Start backend (from client/server/)
    npm run server
@@ -133,7 +114,7 @@
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    - Frontend: http://localhost:5173
    - Backend: http://localhost:3000
 
@@ -231,10 +212,6 @@ npm start
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **Google Gemini** for AI text generation
@@ -243,15 +220,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Neon** for database hosting
 - **Cloudinary** for image storage
 
-## 📞 Support
-
-- **Email**: support@quickai.com
-- **Discord**: [Join our community](https://discord.gg/quickai)
-- **Documentation**: [docs.quickai.com](https://docs.quickai.com)
-
----
 
 <div align="center">
-  <p>Made with ❤️ by the QuickAI Team</p>
+
   <p>Transform your creativity with AI today! 🚀</p>
 </div>
