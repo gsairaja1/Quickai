@@ -1,12 +1,102 @@
-# React + Vite
+# QuickAI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for QuickAI, built with React and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dashboard**: View your AI creations and usage statistics
+- **Write Article**: Generate articles using AI
+- **Blog Titles**: Create engaging blog titles
+- **Generate Images**: Create AI-generated images
+- **Remove Background**: Remove backgrounds from images
+- **Remove Object**: Remove objects from images
+- **Review Resume**: Get AI-powered resume feedback
+- **Community**: Share and discover creations from other users
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 18**: Frontend framework
+- **Vite**: Build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Clerk**: Authentication and user management
+- **React Router**: Client-side routing
+- **Axios**: HTTP client for API requests
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Navigate to the client directory:
+   ```bash
+   cd client
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and visit `http://localhost:5173`
+
+### Environment Variables
+
+Create a `.env` file in the client directory:
+
+```env
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_BASE_URL=http://localhost:3000
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## Project Structure
+
+```
+client/
+├── public/           # Static assets
+├── src/
+│   ├── assets/       # Images and other assets
+│   ├── components/   # Reusable React components
+│   ├── pages/        # Page components
+│   ├── App.jsx       # Main app component
+│   ├── main.jsx      # Entry point
+│   └── index.css     # Global styles
+├── package.json
+├── vite.config.js    # Vite configuration
+└── README.md
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
