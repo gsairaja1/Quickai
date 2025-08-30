@@ -2,28 +2,32 @@
     "version": 2,
     "builds": [
         {
-            "src": "client/server/server.js",
-            "use": "@vercel/node",
+            "src": "client/package.json",
+            "use": "@vercel/static-build",
             "config": {
-                "installCommand": "cd client/server && npm install"
+                "distDir": "dist"
             }
+        },
+        {
+            "src": "server/server.js",
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "client/server/server.js"
+            "dest": "server/server.js"
         },
         {
             "src": "/(.*)",
-            "dest": "client/server/server.js"
+            "dest": "/index.html"
         }
     ],
     "env": {
         "NODE_ENV": "production"
     },
     "functions": {
-        "client/server/server.js": {
+        "server/server.js": {
             "maxDuration": 30
         }
     }

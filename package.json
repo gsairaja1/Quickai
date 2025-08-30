@@ -1,19 +1,19 @@
 {
-  "name": "quickai-backend",
+  "name": "quickai",
   "version": "1.0.0",
-  "description": "QuickAI Backend API",
-  "main": "client/server/server.js",
+  "description": "QuickAI - AI-Powered Creative Suite",
+  "main": "server/server.js",
   "scripts": {
-    "build": "echo 'Backend only - no build step needed'",
-    "start": "node client/server/server.js",
-    "dev": "cd client/server && npm run server"
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "dev": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "install-all": "npm install && cd client && npm install && cd server && npm install"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "keywords": ["ai", "backend", "api", "vercel"],
+  "keywords": ["ai", "frontend", "backend", "vercel"],
   "author": "QuickAI Team",
   "license": "MIT"
 }

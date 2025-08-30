@@ -76,6 +76,44 @@
 - **Clerk** - User authentication
 - **Cloudinary** - Image storage and optimization
 
+## 📁 Project Structure
+
+```
+QuickAI/
+├── client/           # Frontend React application
+│   ├── public/       # Static assets
+│   ├── src/          # Source code
+│   │   ├── assets/   # Images and other assets
+│   │   ├── components/ # Reusable React components
+│   │   ├── pages/    # Page components
+│   │   ├── App.jsx   # Main app component
+│   │   ├── main.jsx  # Entry point
+│   │   └── index.css # Global styles
+│   ├── package.json
+│   ├── vite.config.js
+│   └── README.md
+├── server/           # Backend Node.js API
+│   ├── configs/      # Configuration files
+│   │   ├── db.js     # Database connection
+│   │   ├── multer.js # File upload configuration
+│   │   └── cloudinary.js # Cloudinary configuration
+│   ├── controllers/  # Route controllers
+│   │   ├── aiController.js
+│   │   └── userController.js
+│   ├── middleware/   # Custom middleware
+│   │   └── auth.js   # Authentication middleware
+│   ├── routes/       # API routes
+│   │   ├── aiRoutes.js
+│   │   └── userRoutes.js
+│   ├── temp/         # Temporary file storage
+│   ├── server.js     # Main server file
+│   ├── package.json
+│   └── README.md
+├── package.json      # Root package.json
+├── vercel.json       # Vercel deployment config
+└── README.md         # This file
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -92,136 +130,138 @@
    cd Quickai
    ```
 
-2. **Install dependencies**
+2. **Install dependencies for all parts**
    ```bash
-   # Install frontend dependencies
-   cd client
-   npm install
-   
-   # Install backend dependencies
-   cd server
-   npm install
+   npm run install-all
    ```
 
+3. **Set up environment variables** (see Environment Variables section)
 
-
-3. **Start the development servers**
+4. **Start the development servers**
    ```bash
-   # Start backend (from client/server/)
-   npm run server
-   
-   # Start frontend (from client/)
+   # Start frontend (in one terminal)
    npm run dev
+   
+   # Start backend (in another terminal)
+   npm run dev:server
    ```
 
-4. **Open your browser**
-   - Frontend: http://localhost:5173
-   - Backend: http://localhost:3000
+5. **Open your browser and visit** `http://localhost:5173`
 
-## 📁 Project Structure
+## ⚙️ Environment Variables
 
-```
-QuickAI/
-├── client/                 # Frontend React application
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   ├── assets/        # Static assets
-│   │   └── main.jsx       # App entry point
-│   ├── server/            # Backend Express application
-│   │   ├── controllers/   # Route controllers
-│   │   ├── routes/        # API routes
-│   │   ├── middleware/    # Custom middleware
-│   │   ├── configs/       # Configuration files
-│   │   └── server.js      # Server entry point
-│   └── package.json
-└── README.md
+### Frontend (client/.env)
+```env
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_BASE_URL=http://localhost:3000
 ```
 
-## 🎯 Key Features Explained
+### Backend (server/.env)
+```env
+# Database
+DATABASE_URL=your_postgresql_connection_string
 
-### AI Image Generation
-The platform uses Stable Diffusion to generate high-quality images from text descriptions. Users can specify style, mood, and composition to create unique artwork.
+# Clerk Authentication
+CLERK_SECRET_KEY=your_clerk_secret_key
 
-### Resume Review System
-Upload your PDF resume and get AI-powered feedback including:
-- Overall impression analysis
-- Strengths identification
-- Areas for improvement
-- Actionable recommendations
-- Professional formatting tips
+# AI Services
+GEMINI_API_KEY=your_gemini_api_key
+GOOGLE_API_KEY=your_google_api_key
 
-### Community Hub
-Share your AI-generated creations with the community:
-- Like and interact with other users' work
-- Discover new creative ideas
-- Build a portfolio of your AI creations
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+```
 
-## 🔧 API Endpoints
+## 🗄️ Database Setup
 
-### Authentication
-- `POST /api/user/login` - User authentication
-- `GET /api/user/profile` - Get user profile
+1. Create a PostgreSQL database (Neon recommended)
+2. Update the `DATABASE_URL` in your server `.env` file
+3. The database tables will be created automatically on first run
 
-### AI Services
-- `POST /api/ai/generate-image` - Generate AI images
-- `POST /api/ai/generate-article` - Create articles
-- `POST /api/ai/resume-review` - Review resumes
-- `POST /api/ai/remove-background` - Remove image backgrounds
+## 📡 API Endpoints
 
-### User Content
-- `GET /api/user/get-user-creations` - Get user's creations
-- `GET /api/user/get-published-creations` - Get community creations
-- `POST /api/user/toggle-like-creations` - Like/unlike creations
+### User Routes (`/api/user`)
+- `GET /get-user-creations` - Get user's creations
+- `GET /get-published-creations` - Get published creations
+- `POST /toggle-like-creations` - Toggle like on a creation
 
-## 🎨 UI/UX Features
+### AI Routes (`/api/ai`)
+- `POST /write-article` - Generate articles
+- `POST /blog-titles` - Generate blog titles
+- `POST /generate-images` - Generate images
+- `POST /remove-background` - Remove image backgrounds
+- `POST /remove-object` - Remove objects from images
+- `POST /resume-review` - Review resumes
 
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile
-- **Dark/Light Mode**: Toggle between themes
-- **Loading States**: Smooth loading animations
-- **Error Handling**: User-friendly error messages
-- **Toast Notifications**: Real-time feedback
-- **Drag & Drop**: Easy file uploads
+## 📜 Available Scripts
 
-## 🔒 Security Features
+### Root Level
+- `npm run install-all` - Install dependencies for all parts
+- `npm run build` - Build frontend for production
+- `npm run dev` - Start frontend development server
+- `npm run dev:server` - Start backend development server
 
-- **JWT Authentication**: Secure token-based auth
-- **Rate Limiting**: Prevent API abuse
-- **File Validation**: Secure file uploads
-- **CORS Protection**: Cross-origin security
-- **Input Sanitization**: Prevent injection attacks
+### Frontend (client/)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+### Backend (server/)
+- `npm start` - Start production server
+- `npm run dev` - Start development server with nodemon
 
 ## 🚀 Deployment
 
-### Frontend (Vercel)
-```bash
-npm run build
-vercel --prod
-```
+### Vercel Deployment
 
-### Backend (Railway/Render)
-```bash
-npm start
-```
+The project is configured for Vercel deployment with:
+- Frontend: Static build deployment
+- Backend: Serverless functions
+- Automatic scaling
+- Environment variable management
+
+### Local Development
+
+For local development, make sure to:
+1. Set up your environment variables
+2. Have a PostgreSQL database running
+3. Configure CORS for frontend-backend communication
+
+## 📁 File Upload
+
+The backend handles file uploads using Multer:
+- Images: JPEG, PNG, WebP formats
+- Documents: PDF files for resume review
+- Temporary storage in `/tmp` directory (Vercel-compatible)
+
+## 🛡️ Security
+
+- JWT token validation via Clerk
+- CORS configuration
+- File type validation
+- Rate limiting (recommended for production)
+- Environment variable protection
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-## 🙏 Acknowledgments
+## 📄 License
 
-- **Google Gemini** for AI text generation
-- **Stable Diffusion** for image generation
-- **Clerk** for authentication
-- **Neon** for database hosting
-- **Cloudinary** for image storage
+MIT License - see LICENSE file for details
 
+## 🔗 Links
 
-<div align="center">
+- **Frontend Documentation**: [client/README.md](client/README.md)
+- **Backend Documentation**: [server/README.md](server/README.md)
+- **Live Demo**: [Coming Soon]
+- **Issues**: [GitHub Issues](https://github.com/gsairaja1/Quickai/issues)
 
-  <p>Transform your creativity with AI today! 🚀</p>
-</div>
+---
+
+**Made with ❤️ by the QuickAI Team**
